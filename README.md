@@ -1,11 +1,5 @@
 **Project: Technical Content Cluster Mapping**
 
-**Category: Professional Work Project**
-
-**Experience: 4.5+ Years**
-
-**Role: Senior Marketing Specialist**
-
 **Focus: B2B Marketing · SEO · Content Strategy · Growth Marketing**
 
 **Project Description**
@@ -13,6 +7,8 @@
 A professional content strategy and SEO architecture project focused on building topic clusters, mapping search intent, identifying content gaps, strengthening internal linking, and connecting organic content with lead-generation goals.
 
 The project demonstrates how content marketing can move beyond individual blog publishing into a structured system for building topical authority, organic visibility, and lead-generation opportunities.
+
+**Portfolio Project | Senior Marketing Specialist | 4.5+ Years B2B Marketing Experience**
 
 <img width="1483" height="867" alt="Image" src="https://github.com/user-attachments/assets/58f34cd1-5fe8-46b9-80ff-44aaf32f7782" />
 

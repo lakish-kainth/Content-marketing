@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Technical Content Cluster Mapping</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#16203a;--mut:#5d6882;--line:#dfe3ec;--acc:#0f766e;--accbg:#e1f3f1;--hi:#b45309;--hibg:#fdf0dc;--bad:#b42318;--badbg:#fde8e6;--ok:#157347;--okbg:#e3f4ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1524;--card:#18203a;--ink:#e8ecf7;--mut:#9aa6c4;--line:#2b3556;--acc:#4fd1c5;--accbg:#143a3a;--hi:#f6ad55;--hibg:#3a2c14;--bad:#fc8181;--badbg:#3d1d1d;--ok:#68d391;--okbg:#17321f}}
+:root[data-theme="dark"]{--bg:#0f1524;--card:#18203a;--ink:#e8ecf7;--mut:#9aa6c4;--line:#2b3556;--acc:#4fd1c5;--accbg:#143a3a;--hi:#f6ad55;--hibg:#3a2c14;--bad:#fc8181;--badbg:#3d1d1d;--ok:#68d391;--okbg:#17321f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{max-width:1200px;margin:auto;padding:10px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:600;font-size:16px}.demo{background:var(--hibg);color:var(--hi);border-radius:4px;padding:2px 8px;font-size:12px;font-weight:500}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}nav button{background:none;border:0;padding:6px 12px;border-radius:6px;color:var(--mut)}nav button[aria-current=page]{background:var(--accbg);color:var(--acc);font-weight:600}
+main{max-width:1200px;margin:auto;padding:24px 20px 60px}h1{font-size:24px;margin:0 0 4px}h2{font-size:16px;margin:0 0 12px}.sub{color:var(--mut);margin:0 0 20px;max-width:70ch}
+.grid{display:grid;gap:16px}.kpis{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.two{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px}
+.kpi b{display:block;font-size:26px;font-weight:600}.kpi span{color:var(--mut);font-size:13px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:20px;font-size:13px}.flow span{background:var(--card);border:1px solid var(--line);padding:3px 10px;border-radius:99px}.flow i{color:var(--mut);font-style:normal}
+.row{display:grid;grid-template-columns:150px 1fr 40px;gap:8px;align-items:center;margin:6px 0;font-size:13px}.track{background:var(--line);height:10px;border-radius:5px;overflow:hidden}.fill{height:100%;background:var(--acc)}
+.tbl{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}th{font-weight:600;color:var(--mut);font-size:13px}th button{background:none;border:0;padding:0;font-weight:600;color:inherit}tbody tr{cursor:pointer}tbody tr:hover,tr.sel{background:var(--accbg)}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:12px;background:var(--line)}.High{background:var(--hibg);color:var(--hi)}.Medium{background:var(--accbg);color:var(--acc)}.Low{background:var(--line);color:var(--mut)}.Missing{background:var(--badbg);color:var(--bad)}.Mapped{background:var(--okbg);color:var(--ok)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.tools input,.tools select{padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card)}label{font-size:13px;color:var(--mut);display:flex;flex-direction:column;gap:2px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}@media(max-width:900px){.split{grid-template-columns:1fr}}
+.btn{background:var(--acc);color:var(--card);border:0;padding:7px 14px;border-radius:6px;font-weight:500}.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+dl{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;margin:0;font-size:14px}dt{color:var(--mut)}dd{margin:0}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:6px;font-size:14px}
+.empty{padding:28px;text-align:center;color:var(--mut)}svg text{fill:var(--ink);font-family:inherit}.node{cursor:pointer}.node:focus-visible rect,.node:focus-visible circle{stroke:var(--acc);stroke-width:3}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--mut);margin-bottom:8px;flex-wrap:wrap}.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:var(--c)}
+</style></head><body>
+<header><div class="bar"><span class="brand">Content Cluster Mapping</span><span class="demo">Prototype / Demo Data</span>
+<nav id="nav" aria-label="Primary"></nav></div></header>
+<main id="app" aria-live="polite"></main><div id="toast" class="toast" role="status" hidden></div>
+<script>
+const CL={fund:"Fundamentals",comp:"Compliance",ind:"Industry",use:"Use Cases",prod:"Product & Commercial"};
+const PILLAR={id:"P1",topic:"Electronic Signature Software",kw:"electronic signature software",intent:"Commercial Investigation",obj:"Generate qualified enterprise leads from regulated industries",url:"/blog/electronic-signature-software/",cta:"Request a demo",funnel:"BOFU",status:"Planned",rec:["H1: Electronic Signature Software for Regulated Industries","H2s: legality, compliance frameworks, industry fit, workflows, evaluation checklist","FAQ block: legal validity, audit trails, Aadhaar eSign vs DSC","Links to every cluster page above the fold"]};
+const PROJECT={name:"Electronic Signature Software for Regulated Industries",aud:"Pharma, Healthcare & Enterprise Operations",goal:"Lead Generation",conv:"Demo Request"};
+// content: id,title,cluster,kw,intent,funnel,priority,status,inlinks,cta
+const C=[
+["c1","What Is an Electronic Signature?","fund","what is electronic signature","Informational","TOFU","Medium","Published",6,"Download the eSign basics guide"],
+["c2","Digital Signature vs Electronic Signature","fund","digital signature vs electronic signature","Informational","TOFU","Medium","Published",4,"Read the legal validity guide"],
+["c3","Are Electronic Signatures Legally Valid in India?","comp","electronic signature legality india","Informational","TOFU","High","Review",3,"Take the compliance assessment"],
+["c4","Electronic Signature Compliance Guide","comp","esign compliance","Commercial Investigation","MOFU","High","Updating",5,"Book a compliance consultation"],
+["c5","21 CFR Part 11 Electronic Signatures Explained","comp","21 cfr part 11 electronic signature","Informational","MOFU","High","Draft",1,"Download the Part 11 checklist"],
+["c6","How Aadhaar eSign Works","comp","aadhaar esign process","Informational","TOFU","High","Published",0,"Contact sales"],
+["c7","How to Automate Contract Approvals","use","automate document approvals","Problem-Based","MOFU","High","Brief Ready",2,"See the workflow demo"],
+["c8","Electronic Signatures for Employee Onboarding","use","employee onboarding esign","Problem-Based","MOFU","Medium","Planned",2,"Start a free trial"],
+["c9","eSignature for Healthcare Workflows","ind","esign for healthcare","Commercial Investigation","MOFU","Medium","Planned",1,"Request a demo"],
+["c10","Best Electronic Signature Software","prod","best electronic signature software","Commercial Investigation","BOFU","High","Planned",3,"Request a demo"],
+["c11","Electronic Signature Software Pricing","prod","electronic signature software pricing","Transactional","BOFU","High","Idea",1,"Contact sales"],
+["c12","eSignature API Guide","prod","esignature api","Commercial Investigation","BOFU","Medium","Idea",1,"Read the API docs"],
+["c13","MSB Docs eSign Overview","prod","msb docs esign","Navigational","BOFU","Low","Published",4,"Start a free trial"]
+].map(a=>({id:a[0],title:a[1],cl:a[2],kw:a[3],intent:a[4],funnel:a[5],pri:a[6],status:a[7],inl:a[8],cta:a[9]}));
+// keywords: kw, volume, kd, cpc, intent, funnel, cluster, priority, contentId|null
+const K=[
+["electronic signature software",14800,72,9.4,"Commercial Investigation","BOFU","prod","High","c10"],
+["best electronic signature software",5400,68,11.2,"Commercial Investigation","BOFU","prod","High","c10"],
+["electronic signature software pricing",1900,49,12.8,"Transactional","BOFU","prod","High","c11"],
+["esignature api",1300,44,8.1,"Commercial Investigation","BOFU","prod","Medium","c12"],
+["msb docs esign",320,8,3.2,"Navigational","BOFU","prod","Low","c13"],
+["what is electronic signature",12100,41,2.1,"Informational","TOFU","fund","Medium","c1"],
+["digital signature vs electronic signature",4400,36,2.6,"Informational","TOFU","fund","Medium","c2"],
+["how does esignature work",2900,33,2.4,"Informational","TOFU","fund","Medium",null],
+["electronic signature legality india",1600,38,3.9,"Informational","TOFU","comp","High","c3"],
+["esign compliance",1100,42,6.7,"Commercial Investigation","MOFU","comp","High","c4"],
+["21 cfr part 11 electronic signature",880,35,7.5,"Informational","MOFU","comp","High","c5"],
+["aadhaar esign process",2400,31,2.8,"Informational","TOFU","comp","High","c6"],
+["eidas electronic signature",1000,40,4.6,"Informational","MOFU","comp","Medium",null],
+["esign for pharma",480,29,10.3,"Commercial Investigation","MOFU","ind","High",null],
+["esign for healthcare",590,34,9.1,"Commercial Investigation","MOFU","ind","Medium","c9"],
+["esign for bfsi",420,37,8.8,"Commercial Investigation","MOFU","ind","Medium",null],
+["automate document approvals",1700,39,5.9,"Problem-Based","MOFU","use","High","c7"],
+["employee onboarding esign",720,30,5.2,"Problem-Based","MOFU","use","Medium","c8"],
+["vendor agreement signing process",390,27,4.4,"Problem-Based","MOFU","use","Low",null]
+].map(a=>({kw:a[0],vol:a[1],kd:a[2],cpc:a[3],intent:a[4],funnel:a[5],cl:a[6],pri:a[7],cid:a[8]}));
+const GAPS=[
+["g1","eSignature for Pharmaceutical Companies","High","High","Competitors (DocuSign, Adobe Sign) run dedicated pharma pages; this site has no industry page for pharma.","Electronic Signature Software for Pharmaceutical Companies","ind","esign for pharma"],
+["g2","eIDAS Electronic Signature Compliance","Medium","High","Cross-border enterprises search eIDAS levels; no coverage on this site.","eIDAS Compliance for Electronic Signatures","comp","eidas electronic signature"],
+["g3","How eSignature Works (Technical)","Medium","Medium","High-volume TOFU query with no mapped page; supports the fundamentals cluster.","How Does eSignature Work? A Step-by-Step Guide","fund","how does esignature work"],
+["g4","eSignature for BFSI","Medium","Medium","BFSI onboarding is a core buyer segment; no dedicated page.","eSignature for BFSI: KYC and Loan Documentation","ind","esign for bfsi"],
+["g5","Vendor Agreement Signing Workflow","Low","Medium","Procurement use case missing; supports contract workflow content.","How to Streamline Vendor Agreement Signing","use","vendor agreement signing process"]
+].map(a=>({id:a[0],topic:a[1],pri:a[2],opp:a[3],why:a[4],rec:a[5],cl:a[6],kw:a[7]}));
+const L=[
+["l1","c10","c5","21 CFR Part 11 compliant electronic signatures","High","High","Buyers in pharma evaluate Part 11 support before shortlisting software."],
+["l2","c6","c4","eSign compliance requirements in India","High","High","Aadhaar eSign page has zero inbound links; the compliance guide is its natural parent."],
+["l3","c4","c5","audit trails and electronic records under Part 11","High","High","Compliance guide should hand off to the deepest regulatory page."],
+["l4","c7","c10","enterprise eSignature software","Medium","High","Problem-solving readers who want a tool move down to the commercial page."],
+["l5","c9","c5","Part 11 validation for healthcare and life sciences","Medium","Medium","Healthcare buyers overlap with GxP-regulated buyers."],
+["l6","c1","c2","digital signature vs electronic signature","Medium","Medium","Natural next step within the fundamentals cluster."]
+].map(a=>({id:a[0],from:a[1],to:a[2],anchor:a[3],pri:a[4],rel:a[5],why:a[6]}));
+const FUNNEL={TOFU:"Educate: capture organic discovery",MOFU:"Solve: build trust and compare options",BOFU:"Convert: drive demo and sales conversations"};
+const INTENTS=["Informational","Commercial Investigation","Transactional","Navigational","Problem-Based"];
+const IF={Informational:"TOFU",["Commercial Investigation"]:"MOFU / BOFU",Transactional:"BOFU",Navigational:"BOFU",["Problem-Based"]:"MOFU"};
+const cById=id=>C.find(c=>c.id===id);
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const tag=t=>`<span class="tag ${esc(t)}">${esc(t)}</span>`;
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2200)}
+// Integrity check
+const BAD=[...K.filter(k=>!CL[k.cl]||(k.cid&&!cById(k.cid))),...C.filter(c=>!CL[c.cl]),...L.filter(l=>!cById(l.from)||!cById(l.to)),...GAPS.filter(g=>!CL[g.cl])];
+const PAGES={dash:"Dashboard",kw:"Keywords",map:"Cluster map",gap:"Content gaps",link:"Internal links"};
+const state={page:"dash",q:"",intent:"",cl:"",sort:"pri",selKw:null,selNode:"P1",gapPri:"",selLink:"l1",selGap:"g1"};
+function go(p){state.page=p;location.hash=p;render()}
+window.addEventListener("hashchange",()=>{const p=location.hash.slice(1);if(PAGES[p]&&p!==state.page){state.page=p;render()}});
+function bars(items,max){return items.map(([l,v,pct])=>`<div class="row"><span>${esc(l)}</span><div class="track"><div class="fill" style="width:${Math.round(v/max*100)}%"></div></div><b>${pct??v}</b></div>`).join("")}
+function dash(){
+ const mapped=K.filter(k=>k.cid).length,cov=Math.round(mapped/K.length*100);
+ const com=K.filter(k=>["Commercial Investigation","Transactional"].includes(k.intent));const comCov=Math.round(com.filter(k=>k.cid).length/com.length*100);
+ const opps=K.filter(k=>!k.cid).length+GAPS.length, hp=GAPS.filter(g=>g.pri==="High").length+C.filter(c=>c.pri==="High"&&c.status!=="Published").length;
+ const orph=C.filter(c=>c.inl===0).length, linkHealth=Math.round(C.filter(c=>c.inl>=2).length/C.length*100);
+ const score=Math.round(cov*.35+comCov*.25+linkHealth*.2+80*.2);
+ const kp=[["Architecture score",score+"/100"],["Topic coverage",cov+"%"],["Content opportunities",opps],["High-priority topics",hp],["Link opportunities",L.length],["Commercial coverage",comCov+"%"],["Content-to-lead potential","High"]];
+ const byI=INTENTS.map(i=>[i,K.filter(k=>k.intent===i).length]);
+ const byF=["TOFU","MOFU","BOFU"].map(f=>[f,C.filter(c=>c.funnel===f).length]);
+ const byC=Object.keys(CL).map(c=>[CL[c],K.filter(k=>k.cl===c&&k.cid).length,Math.round(K.filter(k=>k.cl===c&&k.cid).length/K.filter(k=>k.cl===c).length*100)+"%"]);
+ return `<h1>${esc(PROJECT.name)}</h1><p class="sub">Audience: ${esc(PROJECT.aud)}. Goal: ${esc(PROJECT.goal)}. Primary conversion: ${esc(PROJECT.conv)}. All metrics are computed from the demo dataset.</p>
+ <div class="flow" aria-label="Workflow">${["Keywords","Intent","Clusters","Pillar","Gaps","Internal links","Funnel"].map((s,i,a)=>`<span>${s}</span>${i<a.length-1?"<i>›</i>":""}`).join("")}</div>
+ <div class="grid kpis">${kp.map(([l,v])=>`<div class="card kpi"><b>${v}</b><span>${l}</span></div>`).join("")}</div><br>
+ <div class="grid two"><div class="card"><h2>Topic coverage by cluster (keywords with content)</h2>${bars(byC,5)}</div>
+ <div class="card"><h2>Keywords by search intent</h2>${bars(byI,8)}</div>
+ <div class="card"><h2>Content by funnel stage</h2>${bars(byF,8)}<p class="sub" style="margin:10px 0 0">${Object.entries(FUNNEL).map(([k,v])=>k+": "+v).join(" · ")}</p></div>
+ <div class="card"><h2>Internal linking health</h2>${bars([["Pages with 2+ inlinks",C.filter(c=>c.inl>=2).length],["Orphan pages",orph],["Recommended links",L.length]],13)}
+ <p style="margin:12px 0 0"><button class="btn" id="g1">Review keywords</button> <button class="btn ghost" id="g2">Open cluster map</button></p></div></div>`}
+function kwView(){
+ let rows=K.filter(k=>(!state.q||k.kw.includes(state.q.toLowerCase()))&&(!state.intent||k.intent===state.intent)&&(!state.cl||k.cl===state.cl));
+ const P={High:0,Medium:1,Low:2};
+ rows.sort((a,b)=>state.sort==="pri"?P[a.pri]-P[b.pri]||b.vol-a.vol:state.sort==="intent"?a.intent.localeCompare(b.intent):state.sort==="kd"?a.kd-b.kd:b.vol-a.vol);
+ const sel=K.find(k=>k.kw===state.selKw);
+ return `<h1>Keyword mapping</h1><p class="sub">Prototype / Demo Data. Volume, difficulty and CPC are simulated and do not come from any live keyword tool.</p>
+ <div class="tools"><label>Search<input id="q" value="${esc(state.q)}" placeholder="Search keywords"></label>
+ <label>Intent<select id="fi"><option value="">All intents</option>${INTENTS.map(i=>`<option ${state.intent===i?"selected":""}>${i}</option>`).join("")}</select></label>
+ <label>Cluster<select id="fc"><option value="">All clusters</option>${Object.entries(CL).map(([k,v])=>`<option value="${k}" ${state.cl===k?"selected":""}>${v}</option>`).join("")}</select></label>
+ <label>Sort by<select id="so">${[["pri","Priority"],["intent","Intent"],["kd","Difficulty"],["vol","Volume"]].map(([v,t])=>`<option value="${v}" ${state.sort===v?"selected":""}>${t}</option>`).join("")}</select></label></div>
+ <div class="split"><div class="card tbl">${rows.length?`<table><thead><tr><th>Keyword</th><th>Volume</th><th>Difficulty</th><th>Intent</th><th>Funnel</th><th>Cluster</th><th>Priority</th><th>Content</th></tr></thead><tbody>${rows.map(k=>`<tr tabindex="0" data-kw="${esc(k.kw)}" class="${state.selKw===k.kw?"sel":""}"><td>${esc(k.kw)}</td><td>${k.vol.toLocaleString()}</td><td>${k.kd}</td><td>${k.intent}</td><td>${k.funnel}</td><td>${CL[k.cl]}</td><td>${tag(k.pri)}</td><td>${k.cid?tag("Mapped"):tag("Missing")}</td></tr>`).join("")}</tbody></table>`:`<div class="empty">No keywords match these filters. Clear the search or choose All intents.</div>`}</div>
+ <aside class="card" aria-label="Keyword details">${sel?kwDetail(sel):`<div class="empty">Select a keyword to see its intent, funnel stage and assigned content.</div>`}</aside></div>`}
+function kwDetail(k){const c=cById(k.cid);return `<h2>${esc(k.kw)}</h2><dl><dt>Intent</dt><dd>${k.intent}</dd><dt>Funnel</dt><dd>${k.funnel}: ${FUNNEL[k.funnel]}</dd><dt>Cluster</dt><dd>${CL[k.cl]}</dd><dt>CPC (demo)</dt><dd>$${k.cpc}</dd><dt>Assigned</dt><dd>${c?esc(c.title)+" ("+c.status+")":"No content yet. See Content gaps."}</dd><dt>Intent map</dt><dd>${k.intent} typically maps to ${IF[k.intent]}</dd></dl><p style="margin-top:14px"><button class="btn" id="kgo">${c?"Open in cluster map":"View content gap"}</button></p>`}
+function mapView(){
+ const W=900,H=560,cx=450,cy=280,cls=Object.keys(CL);const nodes=[],edges=[];
+ nodes.push({id:"P1",x:cx,y:cy,r:46,t:PILLAR.topic,lv:"pillar"});
+ cls.forEach((c,i)=>{const a=-Math.PI/2+i*2*Math.PI/5,x=cx+Math.cos(a)*150,y=cy+Math.sin(a)*130;nodes.push({id:c,x,y,r:30,t:CL[c],lv:"cluster"});edges.push(["P1",c]);
+  const ch=C.filter(p=>p.cl===c),g=GAPS.filter(p=>p.cl===c);const all=[...ch.map(p=>({id:p.id,t:p.title,lv:"content",p})),...g.map(p=>({id:p.id,t:p.topic,lv:"gap"}))];
+  all.forEach((n,j)=>{const sp=0.5,aa=a+(j-(all.length-1)/2)*sp,rr=265+(j%2)*28;n.x=cx+Math.cos(aa)*rr*1.45;n.y=cy+Math.sin(aa)*rr*.95;n.r=9;nodes.push(n);edges.push([c,n.id])})});
+ const N=id=>nodes.find(n=>n.id===id);const col={pillar:"var(--acc)",cluster:"#3b6fd4",content:"#6b7a99",gap:"var(--bad)"};
+ const s=N(state.selNode)||N("P1");
+ return `<h1>Content cluster map</h1><p class="sub">One pillar, five clusters, supporting content. Select any node to see its keyword, intent, funnel stage and status.</p>
+ <div class="legend">${[["Pillar","var(--acc)"],["Cluster","#3b6fd4"],["Published or planned content","#6b7a99"],["Missing content (gap)","var(--bad)"]].map(([l,c])=>`<span style="--c:${c}">${l}</span>`).join("")}</div>
+ <div class="split"><div class="card tbl"><svg viewBox="0 0 ${W} ${H}" style="min-width:640px;width:100%" role="group" aria-label="Cluster map">${edges.map(([a,b])=>`<line x1="${N(a).x}" y1="${N(a).y}" x2="${N(b).x}" y2="${N(b).y}" stroke="var(--line)" stroke-width="1.5"/>`).join("")}
+ ${nodes.map(n=>{const sel=n.id===s.id;const lab=n.lv==="content"||n.lv==="gap"?"":`<text x="${n.x}" y="${n.y+4}" text-anchor="middle" font-size="${n.lv==="pillar"?12:11}" fill="#fff" style="fill:#fff;font-weight:600">${n.lv==="pillar"?"eSignature":CL[n.id].split(" ")[0]}</text>`;
+ return `<g class="node" tabindex="0" role="button" aria-label="${esc(n.t)}" data-node="${n.id}"><circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${col[n.lv]}" ${n.lv==="gap"?'fill-opacity=".85"':""} stroke="${sel?"var(--ink)":"none"}" stroke-width="3"/>${lab}${n.lv==="content"||n.lv==="gap"?`<title>${esc(n.t)}</title>`:""}</g>`}).join("")}</svg></div>
+ <aside class="card" aria-label="Node details">${nodeDetail(s)}</aside></div>`}
+function nodeDetail(n){
+ if(n.id==="P1")return `<h2>Pillar: ${PILLAR.topic}</h2><dl><dt>Primary keyword</dt><dd>${PILLAR.kw}</dd><dt>Intent</dt><dd>${PILLAR.intent}</dd><dt>Funnel</dt><dd>${PILLAR.funnel}</dd><dt>Priority</dt><dd>${tag("High")}</dd><dt>Status</dt><dd>${PILLAR.status}</dd><dt>Objective</dt><dd>${PILLAR.obj}</dd><dt>URL</dt><dd>${PILLAR.url}</dd><dt>CTA</dt><dd>${PILLAR.cta}</dd><dt>Clusters</dt><dd>${Object.values(CL).join(", ")}</dd><dt>Recommended</dt><dd>${PILLAR.rec.map(esc).join("<br>")}</dd></dl>`;
+ if(CL[n.id]){const ks=K.filter(k=>k.cl===n.id),top=ks.slice().sort((a,b)=>b.vol-a.vol)[0];return `<h2>Cluster: ${CL[n.id]}</h2><dl><dt>Primary keyword</dt><dd>${top.kw}</dd><dt>Intent</dt><dd>${top.intent}</dd><dt>Funnel</dt><dd>${top.funnel}</dd><dt>Priority</dt><dd>${tag(ks.some(k=>k.pri==="High")?"High":"Medium")}</dd><dt>Status</dt><dd>${C.filter(c=>c.cl===n.id).length} pages, ${GAPS.filter(g=>g.cl===n.id).length} gaps</dd><dt>Supporting</dt><dd>${C.filter(c=>c.cl===n.id).map(c=>esc(c.title)).join("<br>")||"None yet"}</dd></dl>`}
+ const c=cById(n.id);if(c)return `<h2>${esc(c.title)}</h2><dl><dt>Topic</dt><dd>${CL[c.cl]}</dd><dt>Primary keyword</dt><dd>${c.kw}</dd><dt>Intent</dt><dd>${c.intent}</dd><dt>Funnel</dt><dd>${c.funnel}: ${FUNNEL[c.funnel]}</dd><dt>Priority</dt><dd>${tag(c.pri)}</dd><dt>Status</dt><dd>${c.status}</dd><dt>Inbound links</dt><dd>${c.inl}${c.inl===0?" "+tag("Missing"):""}</dd><dt>CTA</dt><dd>${c.cta}</dd></dl>`;
+ const g=GAPS.find(x=>x.id===n.id);return `<h2>Gap: ${esc(g.topic)}</h2><dl><dt>Topic</dt><dd>${CL[g.cl]}</dd><dt>Primary keyword</dt><dd>${g.kw}</dd><dt>Intent</dt><dd>${K.find(k=>k.kw===g.kw).intent}</dd><dt>Funnel</dt><dd>${K.find(k=>k.kw===g.kw).funnel}</dd><dt>Priority</dt><dd>${tag(g.pri)}</dd><dt>Status</dt><dd>${tag("Missing")} not created</dd></dl><p><button class="btn" id="ngap" data-g="${g.id}">View content gap</button></p>`}
+function gapView(){
+ const rows=GAPS.filter(g=>!state.gapPri||g.pri===state.gapPri),g=GAPS.find(x=>x.id===state.selGap)||rows[0];
+ return `<h1>Content gaps</h1><p class="sub">Topics the competitor set covers that this site does not. Competitor coverage is demo data.</p>
+ <div class="tools"><label>Priority<select id="gp"><option value="">All</option>${["High","Medium","Low"].map(p=>`<option ${state.gapPri===p?"selected":""}>${p}</option>`).join("")}</select></label></div>
+ <div class="split"><div class="card tbl">${rows.length?`<table><thead><tr><th>Topic</th><th>Cluster</th><th>Priority</th><th>Opportunity</th></tr></thead><tbody>${rows.map(r=>`<tr tabindex="0" data-gap="${r.id}" class="${g&&g.id===r.id?"sel":""}"><td>${esc(r.topic)}</td><td>${CL[r.cl]}</td><td>${tag(r.pri)}</td><td>${tag(r.opp)}</td></tr>`).join("")}</tbody></table>`:`<div class="empty">No gaps at this priority.</div>`}</div>
+ <aside class="card">${g?`<h2>${esc(g.topic)}</h2><dl><dt>Reason</dt><dd>${esc(g.why)}</dd><dt>Recommended</dt><dd>${esc(g.rec)}</dd><dt>Cluster</dt><dd>${CL[g.cl]}</dd><dt>Keyword</dt><dd>${g.kw}</dd><dt>Funnel</dt><dd>${K.find(k=>k.kw===g.kw).funnel}</dd></dl><p style="margin-top:14px"><button class="btn" id="gm">Show in cluster map</button> <button class="btn ghost" id="gl">Review internal links</button></p>`:`<div class="empty">Select a gap to inspect.</div>`}</aside></div>`}
+function linkView(){
+ const l=L.find(x=>x.id===state.selLink),orph=C.filter(c=>c.inl===0);const f=l&&cById(l.from),t=l&&cById(l.to);
+ return `<h1>Internal linking</h1><p class="sub">Recommended links follow the cluster structure: pillar to cluster, cluster to cluster within a topic, and informational pages to commercial pages.</p>
+ <div class="split"><div class="card tbl"><table><thead><tr><th>Source page</th><th>Target page</th><th>Anchor text</th><th>Relevance</th><th>Priority</th></tr></thead><tbody>${L.map(r=>`<tr tabindex="0" data-link="${r.id}" class="${state.selLink===r.id?"sel":""}"><td>${esc(cById(r.from).title)}</td><td>${esc(cById(r.to).title)}</td><td>${esc(r.anchor)}</td><td>${tag(r.rel)}</td><td>${tag(r.pri)}</td></tr>`).join("")}</tbody></table>
+ <h2 style="margin-top:20px">Orphan pages (0 inbound links)</h2>${orph.length?orph.map(o=>`<p>${esc(o.title)} ${tag("Missing")} Parent: ${CL[o.cl]} cluster. <button class="btn ghost" data-orph="${o.id}">Create link recommendation</button></p>`).join(""):`<div class="empty">No orphan pages.</div>`}</div>
+ <aside class="card">${l?`<h2>Link recommendation</h2><dl><dt>From</dt><dd>${esc(f.title)} (${CL[f.cl]})</dd><dt>To</dt><dd>${esc(t.title)} (${CL[t.cl]})</dd><dt>Anchor</dt><dd>${esc(l.anchor)}</dd><dt>Why</dt><dd>${esc(l.why)}</dd><dt>Funnel path</dt><dd>${f.funnel} to ${t.funnel}</dd><dt>CTA on target</dt><dd>${esc(t.cta)}</dd></dl><p style="margin-top:14px"><button class="btn" id="ac">Accept recommendation</button></p>`:""}</aside></div>`}
+function render(){
+ $("#nav").innerHTML=Object.entries(PAGES).map(([k,v])=>`<button data-p="${k}" ${state.page===k?'aria-current="page"':""}>${v}</button>`).join("");
+ if(BAD.length){$("#app").innerHTML=`<div class="card empty">Data integrity error: ${BAD.length} broken reference(s) in the demo dataset.</div>`;return}
+ $("#app").innerHTML={dash,kw:kwView,map:mapView,gap:gapView,link:linkView}[state.page]();
+ scrollTo(0,0);
+}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-p],[data-kw],[data-node],[data-gap],[data-link],[data-orph],button[id]");if(!t)return;const d=t.dataset;
+ if(d.p)return go(d.p);
+ if(d.kw){state.selKw=d.kw;return keep()}
+ if(d.node){state.selNode=d.node;return keep()}
+ if(d.gap){state.selGap=d.gap;return keep()}
+ if(d.link){state.selLink=d.link;return keep()}
+ if(d.orph){const o=cById(d.orph);const id="l"+(L.length+1);L.push({id,from:"c4",to:o.id,anchor:o.title.toLowerCase(),pri:"High",rel:"High",why:"Created from orphan detection: parent cluster page should link to this page."});o.inl=1;state.selLink=id;toast("Link recommendation created");return keep()}
+ const id=t.id;
+ if(id==="g1")return go("kw");if(id==="g2")return go("map");
+ if(id==="kgo"){const k=K.find(x=>x.kw===state.selKw);if(k.cid){state.selNode=k.cid;go("map")}else{state.selGap=GAPS.find(g=>g.kw===k.kw).id;go("gap")}return}
+ if(id==="ngap"){state.selGap=t.dataset.g;return go("gap")}
+ if(id==="gm"){state.selNode=state.selGap;return go("map")}
+ if(id==="gl"){state.selLink="l1";return go("link")}
+ if(id==="ac")toast("Recommendation accepted (demo)");
+});
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("tr[tabindex],g.node")){e.preventDefault();e.target.click()}});
+document.addEventListener("input",e=>{if(e.target.id==="q"){state.q=e.target.value;keep("q")}});
+document.addEventListener("change",e=>{const m={fi:"intent",fc:"cl",so:"sort",gp:"gapPri"}[e.target.id];if(m){state[m]=e.target.value;keep()}});
+function keep(f){const y=scrollY;render();scrollTo(0,y);if(f){const el=$("#"+f);el.focus();el.setSelectionRange(el.value.length,el.value.length)}}
+state.page=PAGES[location.hash.slice(1)]?location.hash.slice(1):"dash";render();
+</script></body></html>
